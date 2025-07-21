@@ -7,6 +7,18 @@ This project aims to improve fraud detection capabilities for Adey Innovations I
 - Real-time monitoring capabilities
 - Explainable AI techniques
 
+This phase establishes the data foundation for fraud detection across:
+- E-commerce transactions (user behavior patterns)
+- Credit card transactions (anomaly detection)
+- Geolocation verification (IP analysis)
+
+## Data Pipeline Architecture
+graph LR
+    A[Raw Data] --> B[Data Cleaning]
+    B --> C[Feature Engineering]
+    C --> D[Exploratory Analysis]
+    D --> E[Processed Datasets]
+
 ## Project Structure
 fraud_detection_project/
 ├── data/
@@ -18,6 +30,21 @@ fraud_detection_project/
 
 ## Task 1: Data Analysis and Preprocessing
 
+## Data Loading & Inspection
+# Load datasets with memory optimization
+dtypes = {
+    'purchase_value': 'float32',
+    'age': 'int8',
+    'class': 'boolean'
+}
+
+fraud_data = pd.read_csv('Fraud_Data.csv', 
+                        parse_dates=['signup_time', 'purchase_time'],
+                        dtype=dtypes)
+
+# Initial data quality check
+print(f"Missing Values:\n{fraud_data.isna().sum()}")
+print(f"\nData Types:\n{fraud_data.dtypes}")
 ### Datasets Processed
 1. **E-commerce Transactions** (`Fraud_Data.csv`)
 2. **IP to Country Mapping** (`IpAddress_to_Country.csv`)
@@ -94,3 +121,4 @@ fraud_detection_project/
 - imbalanced-learn
 - matplotlib
 - seaborn
+
